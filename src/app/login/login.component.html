@@ -1,0 +1,41 @@
+<div class="container-pagina pagina-login">
+  <div class="row">
+      <div class="col-md-3 coluna-height login-fundo-azul d-flex align-items-center">
+            <div class="d-flex column align-items-end">
+                <p class="copyright">©Capgemini - Todos direitos reservados</p>
+            </div>
+        </div>
+      <div class="login-fundo-branco col-md-9 d-flex justify-content-center align-items-center">
+          <div class="row">
+              <div class="col-12">
+                  <picture class="text-center">
+                    <img src="https://www.capgemini.com/br-pt/wp-content/themes/capgemini-komposite/assets/images/logo.svg"/>
+                  </picture>
+              </div>
+
+              <div class="col-md-12">
+                  <form class="form-login">
+                      <div class="form-group">
+                        <campo-texto (valor)="cpf = $event.target.value" tipo="number" placeholder="CPF" titulo="CPF"></campo-texto>
+                      </div>
+                      <div class="form-group">
+                        <campo-texto (valor)="senha = $event.target.value" tipo="password" placeholder="Senha" titulo="Senha"></campo-texto>
+                      </div>
+                      
+                      <button type="button" class="btn btn-secondary btn-block" (click)="logar()">Logar</button>
+                      
+                      <div class="d-flex justify-content-end mt-2">
+                        <label (click)="incluirCliente()" class="label-cadastro-cliente">Cadastrar novo cliente</label>
+                      </div>
+                    </form>
+                    <div class="d-flex justify-content-center">
+                      <div class="mensagem" *ngIf="resposta != null && resposta == 401">CPF e/ou senha incorretos!</div>
+                      <div class="mensagem" *ngIf="resposta != null && (resposta == 0 || resposta == 403)">Falha de conexão com o servidor!</div>
+                      <div class="mensagem" *ngIf="mensagem != ''">Os campos CPF e Senha são de preenchimento obrigatório!</div>
+                    </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+</div>

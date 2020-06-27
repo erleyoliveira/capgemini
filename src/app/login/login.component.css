@@ -1,0 +1,85 @@
+.login-fundo-azul {
+    background-color: #0070ad !important;
+    justify-content: center;
+}
+
+.pagina-login {
+    background-color: #FFF;
+}
+
+.pagina-login picture {
+    margin-bottom: 50px;
+}
+
+.pagina-login .custom-control-position {
+    top: 5px;
+}
+
+.pagina-login .copyright {
+    color: #FFF;
+    font-size: 1rem;
+    position: absolute;
+    bottom: 0px;
+    left: 30px;
+}
+
+.pagina-login picture {
+    display: block;
+}
+
+.container-pagina {
+    overflow: hidden;
+}
+
+button {
+    height: 40px;
+    background: #0070ad;
+    box-shadow: 0px 2px 3px #00559d;
+    opacity: 1;
+    border: none;
+}
+
+button:hover {
+    background: #00449d;
+}
+
+.coluna-height {
+    height: 100vh;
+}
+
+.pagina-login picture,
+.form-login {
+    width: 50%;
+    margin-left: 150px;
+}
+
+.label-cadastro-cliente {
+    font-size: 14px;
+    cursor: pointer;
+    color: #0070ad;
+}
+
+.label-cadastro-cliente:hover {
+    text-decoration: underline;
+}
+
+.mensagem {
+    color: #721c24;
+    background-color: #f8d7da;
+    padding: .75rem 1.25rem;
+    margin: 1rem 0 1rem 0;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    border-color: #f5c6cb;
+    width: 60%;
+}
+
+@media (max-width: 768px) {
+    .login-fundo-azul {
+        display: none !important;
+    }
+    .login-fundo-branco {
+        width: 100% !important;
+        margin-top: 100px;
+    }
+}

@@ -1,0 +1,14 @@
+.pagina {
+    overflow: hidden;
+}
+
+.titulo-pagina {
+    height: 70px;
+    background-color: #0070ad;
+    color: #FFF;
+    width: 100%;
+}
+
+.titulo {
+    font-size: 30px;
+}

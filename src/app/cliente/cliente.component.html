@@ -1,0 +1,23 @@
+<top-menu titulo="Cadastro de Cliente"></top-menu>
+
+<div class="card">
+  <div class="card-body">
+    <div class="row mb-3">
+      <div class="col-md-12">
+        <campo-texto (valor)="nomeCompleto = $event.target.value" tipo="text" placeholder="Nome Completo" titulo="Nome Completo"></campo-texto>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <campo-texto (valor)="cpf = $event.target.value" tipo="number" placeholder="CPF" titulo="CPF"></campo-texto>
+      </div>
+      <div class="col-md-6">
+        <campo-texto (valor)="senha = $event.target.value" tipo="password" placeholder="Senha" titulo="Senha"></campo-texto>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-end">
+      <button class="button btn-secondary mt-3" type="button" (click)="cadastrarCliente()">Salvar</button>
+    </div>
+  </div>
+</div>
