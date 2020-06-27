@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClienteService } from './cliente.service';
+import { Cliente } from './cliente';
 
 @Component({
   selector: 'app-cliente',
@@ -9,7 +10,7 @@ import { ClienteService } from './cliente.service';
 export class ClienteComponent implements OnInit {
 
   nomeCompleto: string = '';
-  cpf: number = null;
+  cpf: string = '';
   senha: string = '';
   loading: boolean = false;
   resposta: number = null;
@@ -20,8 +21,12 @@ export class ClienteComponent implements OnInit {
   }
 
   cadastrarCliente() {
-    if(this.nomeCompleto !== '' && this.cpf !== null && this.senha !== '') {
-      this.clienteService.cadastrarCliente(this.nomeCompleto, this.cpf, this.senha, this.loading, this.resposta);
+    if(this.nomeCompleto !== '' && this.cpf !== '' && this.senha !== '') {
+      if(this.cpf.length == 11) {
+        this.clienteService.cadastrarCliente(new Cliente(this.nomeCompleto, this.cpf, this.senha), this.loading, this.resposta);
+      } else {
+        alert('cpf11')
+      }
     } else {
       alert('campoobrigatorio')
     }

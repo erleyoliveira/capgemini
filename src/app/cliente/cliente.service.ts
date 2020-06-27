@@ -3,14 +3,15 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { Cliente } from './cliente';
 
 @Injectable()
 export class ClienteService {
 
   constructor(@Inject(HttpClient) private http: HttpClient, private cookieService: CookieService, @Inject(Router) private router: Router) { }
 
-  cadastrarCliente(nomeCompleto: string, cpf: number, senha: string, loading: boolean, resposta: number) {
-    let body = `nomeCompleto=${nomeCompleto}&cpf=${cpf}&senha=${senha}`;
+  cadastrarCliente(cliente: Cliente, loading: boolean, resposta: number) {
+    let body = `cliente=${cliente}`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
 
     this.http.post(environment.urlLogin + 'cadastrarcliente', body, { headers, observe: 'response', withCredentials: true })
