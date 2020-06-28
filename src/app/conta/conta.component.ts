@@ -16,7 +16,6 @@ export class ContaComponent implements OnInit {
 
   cliente: Cliente = null;
   operacao: number = null;
-  valorOperacao: number = 0;
   loading: boolean = false;
   private _toastRecebido = new Subject<string>();
   toastValor: string = '';
@@ -27,9 +26,10 @@ export class ContaComponent implements OnInit {
         .subscribe(
           response => {
             this.cliente = response.body;
+            this.cliente.conta.saldo = Math.ceil(this.cliente.conta.saldo);
           },
           error => {
-alert("erro")
+            this.isErro('erroBuscarClienteLogado')
           }
         );
     } else {
@@ -46,64 +46,74 @@ alert("erro")
   }
 
   confirmarOperacao() {
-    if(this.valorOperacao > 0) {
+    if(this.cliente.valor > 0) {
+      this.loading = true;
       if(this.operacao == 1) {
-        this.cliente.valor = this.valorOperacao;
         this.contaService.depositar(this.cliente)
         .subscribe(
           response => {
             this.loading = false;
             if(response.status == 200) {
+              this.isErro('depositoSucesso');
+              this.loading = true;
               this.contaService.consultarSaldo(this.cliente.cpf)
               .subscribe(
                 response => {
                   this.loading = false;
                   if(response.status == 200) {
                     this.cliente.conta.saldo = response.body;
+                    this.cliente.conta.saldo = this.cliente.conta.saldo.toFixed(2);
                   }
                 },
                 error => {
                   this.loading = false;
-                  this.isErro("requisicaoFalha")
+                  this.isErro('requisicaoFalha')
                 }
               );
             }
           },
           error => {
             this.loading = false;
-            this.isErro("requisicaoFalha")
+            this.isErro('requisicaoFalha')
           }
         );
       } else {
-        this.cliente.valor = this.valorOperacao;
-        this.contaService.sacar(this.cliente)
-        .subscribe(
-          response => {
-            this.loading = false;
-            if(response.status == 200) {
-              this.contaService.consultarSaldo(this.cliente.cpf)
-              .subscribe(
-                response => {
-                  this.loading = false;
-                  if(response.status == 200) {
-                    this.cliente.conta.saldo = response.body;
+        if(this.cliente.conta.saldo >= this.cliente.valor) {
+          this.contaService.sacar(this.cliente)
+          .subscribe(
+            response => {
+              this.loading = false;
+              if(response.status == 200) {
+                this.isErro('saqueSucesso');
+                this.loading = true;
+                this.contaService.consultarSaldo(this.cliente.cpf)
+                .subscribe(
+                  response => {
+                    this.loading = false;
+                    if(response.status == 200) {
+                      this.cliente.conta.saldo = response.body;
+                      this.cliente.conta.saldo = this.cliente.conta.saldo.toFixed(2);
+                    }
+                  },
+                  error => {
+                    this.loading = false;
+                    this.isErro('requisicaoFalha')
                   }
-                },
-                error => {
-                  this.loading = false;
-                  this.isErro("requisicaoFalha")
-                }
-              );
+                );
+              }
+            },
+            error => {
+              this.loading = false;
+              this.isErro('requisicaoFalha')
             }
-          },
-          error => {
-            this.loading = false;
-            this.isErro("requisicaoFalha")
-          }
-        );
+          );
+        } else {
+          this.loading = false;
+          this.isErro('saldoInsuficiente')
+        }
       }
     } else {
-      alert("valor deve ser maior que 0")
+      this.isErro('valorMaiorZero')
     }
   }
 
@@ -114,6 +124,16 @@ alert("erro")
 
   isErro(valor: string): void {
     this._toastRecebido.next(valor);
+  }
+
+  setarValorOperacao(evento) {
+    if(evento.includes('R$')) {
+      evento = evento.substring(3, evento.length).replace('.', '');
+    }
+    while(evento.includes('.')) {
+      evento = evento.replace('.', '');
+    }
+    this.cliente.valor = Number.parseFloat(evento.replace(',', '.'));
   }
 
 }

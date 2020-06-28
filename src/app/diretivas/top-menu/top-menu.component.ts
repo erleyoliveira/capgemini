@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'top-menu',
@@ -9,9 +11,14 @@ export class TopMenuComponent implements OnInit {
 
   @Input() titulo = '';
 
-  constructor() { }
+  constructor(private cookieService: CookieService, @Inject(Router) private router: Router) { }
 
   ngOnInit() {
+  }
+
+  logout() {
+    this.cookieService.delete('clienteLogado');
+    this.router.navigateByUrl('capgemini/login');
   }
 
 }

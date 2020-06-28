@@ -12,3 +12,8 @@
 .titulo {
     font-size: 30px;
 }
+
+.logout {
+    cursor: pointer;
+    height: 80%;
+}

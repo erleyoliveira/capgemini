@@ -4,23 +4,23 @@
   <div class="card-body">
     <div class="row">
       <div class="col-md-6">
-        <campo-texto disabled [valorPadrao]="cliente.nomeCompleto" tipo="text" titulo="Nome Completo"></campo-texto>
+        <campo-texto desabilitar="true" [valorPadrao]="cliente.nomeCompleto" tipo="text" titulo="Nome Completo"></campo-texto>
       </div>
       <div class="col-md-6">
-        <campo-texto disabled [valorPadrao]="cliente.cpf" tipo="text" titulo="CPF"></campo-texto>
-      </div>
-    </div>
-    <div class="row mt-3">
-      <div class="col-md-6">
-        <campo-texto disabled [valorPadrao]="cliente.conta.numeroConta" tipo="text" titulo="Número Conta"></campo-texto>
-      </div>
-      <div class="col-md-6">
-        <campo-texto disabled [valorPadrao]="cliente.conta.agencia" tipo="text" titulo="Agência"></campo-texto>
+        <campo-texto desabilitar="true" [valorPadrao]="cliente.cpf" tipo="text" titulo="CPF"></campo-texto>
       </div>
     </div>
     <div class="row mt-3">
       <div class="col-md-6">
-        <campo-texto disabled [valorPadrao]="cliente.conta.saldo" tipo="text" titulo="Saldo"></campo-texto>
+        <campo-texto desabilitar="true" [valorPadrao]="cliente.conta.numeroConta" tipo="text" titulo="Número Conta"></campo-texto>
+      </div>
+      <div class="col-md-6">
+        <campo-texto desabilitar="true" [valorPadrao]="cliente.conta.agencia" tipo="text" titulo="Agência"></campo-texto>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-6">
+        <campo-texto desabilitar="true" [valorPadrao]="cliente.conta.saldo" tipo="text" titulo="Saldo"></campo-texto>
       </div>
       <div class="col-md-1">
         <button (click)="depositar()" class="button btn-secondary btn-block">Depositar</button>
@@ -29,11 +29,26 @@
         <button (click)="sacar()" class="button btn-secondary btn-block">Sacar</button>
       </div>
       <div class="col-md-3">
-        <campo-texto *ngIf="operacao != null && operacao == 1" (valor)="valorOperacao = $event.target.value" tipo="number" placeholder="Digite o valor de depósito" titulo="Valor Depósito"></campo-texto>
-        <campo-texto *ngIf="operacao != null && operacao == 2" (valor)="valorOperacao = $event.target.value" tipo="number" placeholder="Digite o valor de saque" titulo="Valor Saque"></campo-texto>
+        <div *ngIf="operacao != null && operacao == 1">
+          <label >Valor Depósito</label>
+          <input class="form-control" (keyup)="setarValorOperacao($event.target.value)" type="text" placeholder="R$ 0,00" currencyMask/>
+        </div>
+        <div *ngIf="operacao != null && operacao == 2">
+          <label>Valor Saque</label>
+          <input class="form-control" (keyup)="setarValorOperacao($event.target.value)" type="text" placeholder="R$ 0,00" currencyMask/>
+        </div>
       </div>
       <div class="col-md-1 p-0">
         <button *ngIf="operacao != null" (click)="confirmarOperacao()" class="button btn-secondary btn-block">Confirmar</button>
+      </div>
+
+      <div class="mensagens">
+        <div class="mensagem" *ngIf="toastValor == 'valorMaiorZero'">O valor da operação deve ser maior que zero</div>
+        <div class="mensagem" *ngIf="toastValor == 'erroBuscarClienteLogado'">Erro ao buscar cliente logado</div>
+        <div class="mensagem" *ngIf="toastValor == 'requisicaoFalha'">Houve alguma falha no servidor</div>
+        <div class="mensagem" *ngIf="toastValor == 'saldoInsuficiente'">Conta com saldo insuficiente</div>
+        <div class="mensagemSucesso" *ngIf="toastValor == 'depositoSucesso'">Depósito realizado com sucesso</div>
+        <div class="mensagemSucesso" *ngIf="toastValor == 'saqueSucesso'">Saque realizado com sucesso</div>
       </div>
     </div>
   </div>

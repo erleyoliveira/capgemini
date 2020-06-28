@@ -1,2 +1,3 @@
 <label>{{titulo}}</label>
-<input [type]="tipo" [value]="valorPadrao" (keyup)="preencherValor($event)" class="form-control" [placeholder]="placeholder">
+<input *ngIf="desabilitar == false" [type]="tipo" [value]="valorPadrao" (keyup)="preencherValor($event)" class="form-control" [placeholder]="placeholder">
+<input *ngIf="desabilitar == 'true'" disabled [type]="tipo" [value]="valorPadrao" (keyup)="preencherValor($event)" class="form-control" [placeholder]="placeholder">

@@ -14,6 +14,19 @@ import { TopMenuComponent } from './diretivas/top-menu/top-menu.component';
 import { ClienteService } from './cliente/cliente.service';
 import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 import { ContaService } from './conta/conta.service';
+import { NgxCurrencyModule } from "ngx-currency";
+
+export const customCurrencyMaskConfig = {
+  align: "right",
+  allowNegative: true,
+  allowZero: true,
+  decimal: ",",
+  precision: 2,
+  prefix: "R$ ",
+  suffix: "",
+  thousands: ".",
+  nullable: true
+};
 
 @NgModule({
   declarations: [
@@ -33,8 +46,8 @@ import { ContaService } from './conta/conta.service';
       backdropBackgroundColour: 'rgba(204, 204, 204, 0.2)',
       primaryColour: '#00559d',
       secondaryColour: '#0070ad'
-    })
-
+    }),
+    NgxCurrencyModule.forRoot(customCurrencyMaskConfig)
   ],
   providers: [
     CookieService,

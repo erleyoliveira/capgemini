@@ -1,8 +1,13 @@
 <div class="pagina">
-  <div class="m-3">
-    <picture class="text-center">
-      <img src="https://www.capgemini.com/br-pt/wp-content/themes/capgemini-komposite/assets/images/logo.svg"/>
-    </picture>
+  <div class="row m-3">
+    <div class="col-md-11">
+      <picture class="text-center">
+        <img src="https://www.capgemini.com/br-pt/wp-content/themes/capgemini-komposite/assets/images/logo.svg"/>
+      </picture>
+    </div>
+    <div class="col-md-1">
+      <img (click)="logout()" class="logout" src="../../../assets/icon/logout.ico"/>
+    </div>
   </div>
   <div class="titulo-pagina d-flex justify-content-start">
     <h1 class="titulo m-3">{{titulo}}</h1>

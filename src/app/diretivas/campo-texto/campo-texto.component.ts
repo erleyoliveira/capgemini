@@ -12,6 +12,7 @@ export class CampoTextoComponent implements OnInit {
   @Input() placeholder: string = '';
   @Input() valorPadrao: string = '';
   @Output() valor = new EventEmitter();
+  @Input() desabilitar = false;
 
   constructor() { }
 
