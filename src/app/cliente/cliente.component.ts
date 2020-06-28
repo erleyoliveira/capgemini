@@ -36,7 +36,11 @@ export class ClienteComponent implements OnInit {
             },
             error => {
               this.loading = false;
-              this.isErro("requisicaoFalha")
+              if(error.error.message == 'clienteExistente') {
+                this.isErro('clienteExistente');
+              } else {
+                this.isErro("requisicaoFalha")
+              }
             }
           );
       } else {

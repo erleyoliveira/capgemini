@@ -20,6 +20,7 @@
       <div class="mensagem" *ngIf="toastValor == 'cpf11'">CPF deve conter 11 digítos</div>
       <div class="mensagem" *ngIf="toastValor == 'campoObrigatorio'">Os campos são de preenchimento obrigatório</div>
       <div class="mensagem" *ngIf="toastValor == 'requisicaoFalha'">Houve alguma falha no servidor</div>
+      <div class="mensagem" *ngIf="toastValor == 'clienteExistente'">Já existe um cliente cadastrado com esse CPF</div>
       <div class="mensagemSucesso" *ngIf="toastValor == 'requisicaoEnviada'">Cliente cadastrado com sucesso</div>
     </div>
 

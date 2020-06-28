@@ -26,7 +26,6 @@ export class ContaComponent implements OnInit {
         .subscribe(
           response => {
             this.cliente = response.body;
-            this.cliente.conta.saldo = Math.ceil(this.cliente.conta.saldo);
           },
           error => {
             this.isErro('erroBuscarClienteLogado')
