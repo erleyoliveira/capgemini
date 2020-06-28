@@ -1,0 +1,19 @@
+button {
+    height: 40px;
+    background: #0070ad;
+    box-shadow: 0px 2px 3px #00559d;
+    opacity: 1;
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+    position: absolute;
+    bottom: 0;
+}
+
+button:hover {
+    background: #00449d;
+}
+
+.button-bottom {
+    bottom: 0;
+}

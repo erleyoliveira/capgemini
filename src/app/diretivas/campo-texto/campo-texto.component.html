@@ -1,2 +1,2 @@
 <label>{{titulo}}</label>
-<input [type]="tipo" (keyup)="preencherValor($event)" class="form-control" [placeholder]="placeholder">
+<input [type]="tipo" [value]="valorPadrao" (keyup)="preencherValor($event)" class="form-control" [placeholder]="placeholder">

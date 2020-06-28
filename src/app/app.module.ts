@@ -12,6 +12,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { LoginService } from './login/login.service';
 import { TopMenuComponent } from './diretivas/top-menu/top-menu.component';
 import { ClienteService } from './cliente/cliente.service';
+import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
+import { ContaService } from './conta/conta.service';
 
 @NgModule({
   declarations: [
@@ -25,12 +27,20 @@ import { ClienteService } from './cliente/cliente.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxLoadingModule.forRoot({
+      animationType: ngxLoadingAnimationTypes.circle,
+      backdropBackgroundColour: 'rgba(204, 204, 204, 0.2)',
+      primaryColour: '#00559d',
+      secondaryColour: '#0070ad'
+    })
+
   ],
   providers: [
     CookieService,
     LoginService,
-    ClienteService
+    ClienteService,
+    ContaService
   ],
   bootstrap: [AppComponent]
 })

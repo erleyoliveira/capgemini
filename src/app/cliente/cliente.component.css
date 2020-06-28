@@ -11,3 +11,47 @@ button {
 button:hover {
     background: #00449d;
 }
+
+.mensagens {
+    position: absolute;
+    top: 0;
+    right: 30px;
+    width: 400px;
+}
+
+.mensagem {
+    color: #721c24;
+    background-color: #f8d7da;
+    padding: .75rem 1.25rem;
+    margin: 5px;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    border-color: #f5c6cb;
+    position: relative;
+    width: 100%;
+    animation-name: mensagem;
+    animation-duration: 16s;
+}
+
+.mensagemSucesso {
+    color: #0f8800;
+    background-color: #d1f3d3;
+    padding: .75rem 1.25rem;
+    margin: 5px;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    border-color: #62d268;
+    position: relative;
+    width: 100%;
+    animation-name: mensagem;
+    animation-duration: 16s;
+}
+
+@keyframes mensagem {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}

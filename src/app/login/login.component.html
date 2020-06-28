@@ -31,11 +31,12 @@
                     <div class="d-flex justify-content-center">
                       <div class="mensagem" *ngIf="resposta != null && resposta == 401">CPF e/ou senha incorretos!</div>
                       <div class="mensagem" *ngIf="resposta != null && (resposta == 0 || resposta == 403)">Falha de conexão com o servidor!</div>
-                      <div class="mensagem" *ngIf="mensagem != ''">Os campos CPF e Senha são de preenchimento obrigatório!</div>
+                      <div class="mensagem" *ngIf="resposta == -1">Os campos CPF e Senha são de preenchimento obrigatório!</div>
                     </div>
               </div>
           </div>
       </div>
   </div>
-
 </div>
+
+<ngx-loading [show]="loading" [config]="" [template]=""></ngx-loading>
